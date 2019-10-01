@@ -13,6 +13,11 @@ use App\User;
 
 class AuthController extends Controller{
 
+    public function __construct()
+    {
+        $this->middleware('guest:web')->except('logout');
+    }
+
     public function login(){
         $user = Auth::user();
         if(Auth::check()){
