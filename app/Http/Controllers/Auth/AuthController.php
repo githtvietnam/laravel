@@ -21,9 +21,10 @@ class AuthController extends Controller{
         return view('user.auth.login');
     }
     public function doLogin(LoginRequest $request){
-        $credentials = $request->only('email', 'password');
-        if (Auth::attempt($credentials)) {
-            return redirect()->intended('admin');
+        $email = $request->input('email');
+        $password = $request->input('password');
+        if (Auth::attempt(['email' => $email,'password' => $password])) {
+            return redirect('admin');
         }else{
             $errors = new MessageBag(['errorlogin' => 'Email hoặc mật khẩu không đúng']);
 			return redirect()->back()->withInput()->withErrors($errors);
