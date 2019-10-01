@@ -12,13 +12,6 @@ use App\User;
 
 class DashboardController extends Controller
 {
-    public function __construct(Request $request)
-    {
-        $this->middleware('auth');
-        dd(Auth::check());
-
-
-    }
     public function index(){
         return view('backend.home.index');
     }
